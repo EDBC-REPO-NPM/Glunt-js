@@ -1,0 +1,11 @@
+{
+  "name": "glunt",
+  "license": "MIT",
+  "version": "1.0.1",
+  "main": "./main.js",
+  "author": "becerraenmanuel",
+  "bin": { "glunt": "./bin/main.js" },
+  "scripts": { "start": "node main" },
+  "keywords": ["bundle","file bundler","packager","glunt"],
+  "description": "glunt is free and open source library for bundling files"
+}
