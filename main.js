@@ -12,7 +12,7 @@ module.exports = async ( ...args )=>{
     let dir = path.join( args[0],'../' );
         dir = path.normalize(dir);
 
-    const out = await bdl( raw,{view:dir} );
+    const out = await bdl( raw,dir );
 
     if( args[1] )
          fs.writeFileSync( args[1],out );
