@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "glunt-js",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "./main.js",
   "author": "becerraenmanuel",
   "bin": { "glunt": "./bin/main.js" },

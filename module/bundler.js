@@ -1,8 +1,8 @@
 const { Buffer } = require('buffer');
+const stream = require('stream');
 const path = require('path');
 const fs = require('fs');
-
-let _dir;
+let _dir = undefined;
 
 function Component( dir ){
   dir = path.join(_dir,dir);
@@ -54,17 +54,15 @@ async function compile( data ){
   return compile( data );
 }
 
-module.exports = ( raw,dir )=>{
-  return new Promise(async(response,reject)=>{ _dir=dir;
+module.exports = ( dir )=>{
+  return new Promise(async(response,reject)=>{ 
     
-    const arr = new Array(); const data = raw.toString();
-    const style = data.match(/\/\°|\°\/|\<\°|\°\>/gi) || [];
+         _dir = path.join(dir,'../');
+    const data = fs.readFileSync(dir).toString();
+    const style = data.match(/\/\°|\°\/|\<\°|\°\>/gi);
+    const output = !style ? stream.Readable.from(data) : 
+                    stream.Readable.from(await compile(data))
+    response( output );
 
-    if( style.length >= 1 )
-         arr.push( Buffer.from(await compile( data )) );
-    else arr.push( raw );
-
-    return response( arr[0] );
-    
   });
 };

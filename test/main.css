@@ -1,5 +1,8 @@
-/° 
-(()=>{
-    return 'hola mundo';
-})()
-°/
+/° (()=>{
+    const li = new Array(100);
+          li.fill(0);
+    return li.map(x=>{
+        const r = Math.ceil(Math.random() * 10);
+        return `<li> hola mundo ${r} </li>`;
+    }).join('\n');
+})()°/

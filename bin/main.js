@@ -3,16 +3,18 @@
 const glunt = require('../main');
 const fs = require('fs');
 
-function err(){
-    return console.error(` Options: \n\t glunt INPUT/FILE/PATH > OUTPUT/FILE/PATH `);
-}
+function err(){ return console.error(
+    `Options: \n\t glunt INPUT/FILE/PATH > OUTPUT/FILE/PATH`
+)}
 
 (()=>{
     try {
         
-        const i = process.argv[2];
-        if( !i || !fs.existsSync(i) ) 
-        return err(); glunt( i );
+        const arg = process.argv.slice(2);
+        process.env.TERMINAL = true;
+
+        if( !arg || !fs.existsSync(arg[0]) ) 
+            return err(); glunt( ...arg );
 
     } catch(e) { return err(); }
 })();
